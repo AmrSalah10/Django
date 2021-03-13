@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Index </title>
+</head>
+<body>
+
+    <img src="{{movie.poster.url}}" width='300' height='600'>
+    <br>
+    <video controls src='{{ request.scheme }}://{{ request.get_host }} {{ movie.poster.url }}'></video>
+    <ul>
+        <li> {{movie.name}} </li>
+        <li> {{movie.overview}} </li>
+        <li> {{movie.year}} </li>
+        {% comment %} <li> {{movie.categories}} </li> {% endcomment %}
+    </ul>
+    <ul>
+  Categories: 
+    {% for category in categories  %}
+      <li>  {{ category.name }} </li>
+    {% endfor %}
+    </ul>
+    <br>
+
+    <a href="{% url 'update' movie.id %}"> <button> Edit </button> </a>
+    <a href="{% url 'delete' movie.id  %}"> <button> Delete </button> </a>
+</body>
+</html>
