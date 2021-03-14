@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'netflix'
+    'netflix',
+    'accounts'
 ]
 
 MIDDLEWARE = [
@@ -53,10 +54,13 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'movies.urls'
 
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = '/'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

@@ -5,22 +5,48 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Index </title>
+     <style>
+      div{
+        float:left;
+        margin-right:10px
+      }
+      #create{
+        position: fixed;
+        top:90%;
+        left:40%;
+      }
+      #logout{
+        position: fixed;
+        top:90%;
+        left:50%;
+      }
+    </style>
 </head>
 <body>
+ 
+
     {% for movie in Movies  %} 
-    <a href='{% url 'show' movie.name %}'>
-    <img src="{{movie.poster.url }}" width='300' height='600'>
-    </a>
-    <ul>
-        <li> {{movie.name}} </li>
-        <li> {{movie.overview}} </li>
-        <li> {{movie.year}} </li>
-    </ul>
-    
+    <div>
+        <a href='{% url 'show' movie.name %}'>
+        <img src="{{movie.poster.url }}" width='300' height='300'>
+        </a>
+        <ul>
+            <li> {{movie.name}} </li>
+            <li> {{movie.overview}} </li>
+            <li> {{movie.year}} </li>
+        </ul>
+        
+    </div>
     {% endfor %}
 
     
 
+    {% if user.is_authenticated  %}
+    <a href='{% url 'create' %}' id='create'> <button> Create Movie </button> </a>
+    <a href='{% url 'logout' %}' id='logout'> <button> Log out </button> </a>
+    {% else%}
+    <a href='{% url 'login' %}' id='logout'> <button> Sign in </button> </a>
+    {% endif %}
     
 </body>
 </html>
