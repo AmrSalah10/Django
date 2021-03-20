@@ -28,7 +28,12 @@
     {% for movie in Movies  %} 
     <div>
         <a href='{% url 'show' movie.name %}'>
-        <img src="{{movie.poster.url }}" width='300' height='300'>
+        {% if  movie.poster  %}
+          <img src="{{movie.poster.url }}" width='300' height='300'>
+        {% else %}
+          <img src='' alt='poster'  width='300' height='300'>
+        {% endif %}
+        
         </a>
         <ul>
             <li> {{movie.name}} </li>

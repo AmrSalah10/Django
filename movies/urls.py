@@ -15,10 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework import routers
+from netflix.api.views import MovieViewSet
+
+router = routers.DefaultRouter()
+router.register('', MovieViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('netflix.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/', include('accounts.urls')),
+    path('api/movies/', include('netflix.api.urls')),
+    path('api/films/', include(router.urls))
 ]

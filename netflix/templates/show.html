@@ -15,7 +15,12 @@
 <body>
 
   <div>
-    <img src="{{movie.poster.url}}" width='300' height='300'>
+    {% if movie.poster %} 
+      <img src="{{movie.poster.url}}" width='300' height='300'>
+    {% else %}
+      <img src='' alt='poster'  width='300' height='300'>
+    {% endif %}
+
     <br>
     {% if movie.video and user.is_authenticated %}
       <video controls src='{{ request.scheme }}://{{ request.get_host }}{{ movie.video.url }}'></video>
